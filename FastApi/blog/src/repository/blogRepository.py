@@ -2,19 +2,34 @@ from fastapi import HTTPException,status
 from .. import model
 from sqlalchemy.orm import Session
 from .. import schemas
+from ..generic.genericCrudOperation import getAllData, createData
 
+
+
+def getAllBlogsByGeneric(db):
+     blogs = getAllData(db,model.Blog)
+     return blogs
 
 
 def getAllBlogs(db):
      blogs = db.query(model.Blog).all()
      return blogs
 
+# def createBlog(blog:schemas.Blog, db:Session  ):
+     
+#     new_blog =  model.Blog(title=blog.title, author=blog.author, body=blog.body, publishedStatus=blog.publishedStatus)
+#     db.add(new_blog)
+#     db.commit()
+#     db.refresh(new_blog)
+#     return new_blog
+
+
+
 def createBlog(blog:schemas.Blog, db:Session  ):
-    new_blog =  model.Blog(title=blog.title, author=blog.author, body=blog.body, publishedStatus=blog.publishedStatus, owner_id=1)
-    db.add(new_blog)
-    db.commit()
-    db.refresh(new_blog)
-    return new_blog
+     
+    new_blog =  model.Blog(title=blog.title, author=blog.author, body=blog.body, publishedStatus=blog.publishedStatus)
+    abc= createData(db,new_blog)
+    return abc
 
 
 def getBlogByID(id:int,db:Session ):

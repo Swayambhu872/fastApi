@@ -31,7 +31,7 @@ class ShowOwner(BaseModel):
 class ShowBlog(BaseModel):
     title:str
     author:str
-    owner:ShowOwner
+    #owner:ShowOwner
     class Config():  #Pydantic models can be created from arbitrary class instances to support models that map to ORM objects
         orm_mode=True #The Config property orm_mode must be set to True.
 
@@ -46,4 +46,9 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Optional[str] = None
+
+class Potato(BaseModel):
+    id: int
+    color: str
+    mass: float
     

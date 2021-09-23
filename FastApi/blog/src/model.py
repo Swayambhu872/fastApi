@@ -23,5 +23,10 @@ class User(Base):
     name = Column(String)
     email =Column(String)
     password = Column(String)
-    blogs=relationship("Blog", back_populates="owner")
+    #blogs=relationship("Blog", back_populates="owner")
   
+class Potato(Base):
+    __tablename__='Potato'
+    id=Column(Integer,primary_key=True,index=True)
+    color= Column(String(50))
+    mass=Column(Integer) 
